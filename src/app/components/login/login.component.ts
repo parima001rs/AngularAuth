@@ -12,11 +12,12 @@ import { UserStoreService } from 'src/app/services/user-store.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  public loginForm! : FormGroup;
   type: string = "password";
   isText: boolean = false;
   eyeIcon: string = "fa-eye-slash";
-  loginForm! : FormGroup;
+  public resetPasswordEmail!: string;
+  public isValidEmail!: boolean;
 
   constructor(
     private fb: FormBuilder, 
@@ -46,9 +47,10 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.loginForm.value)
       .subscribe({
         next:(res)=>{
-          console.log(res.message);
+          //console.log(res.message);
           this.loginForm.reset();
-          this.auth.storeToken(res.token);
+          this.auth.storeToken(res.accessToken);
+          this.auth.storeRefreshToken(res.refreshToken);
           const tokenPayload = this.auth.decodedToken();
           this.userStore.setFullNameForStore(tokenPayload.name);
           this.userStore.setRoleForStore(tokenPayload.role);
@@ -66,9 +68,12 @@ export class LoginComponent implements OnInit {
     else{
       //throw the error using toaster and with req. fields
       ValidateForm.validateAllFormFields(this.loginForm);
-      alert("Your form is invalid");
+      //alert("Your form is invalid");
     }
   }
-
+  checkValidEmail(event: string){
+    // const value = event;
+    // const pattern = 
+  }
  
 }
