@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 //import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validateform';
 import { AuthService } from 'src/app/services/auth.service';
+import { ResetPasswordService } from 'src/app/services/reset-password.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder, 
     private auth: AuthService, 
     private router: Router,
-    private userStore: UserStoreService
+    private userStore: UserStoreService,
+    private resetService: ResetPasswordService
     //private toast: NgToastService
   ) { }
 
@@ -72,8 +74,35 @@ export class LoginComponent implements OnInit {
     }
   }
   checkValidEmail(event: string){
-    // const value = event;
-    // const pattern = 
+    const value = event;
+    const pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$/;
+    this.isValidEmail = pattern.test(value);
+    return this.isValidEmail;
   }
- 
+  
+  confirmToReset(){
+    if(this.checkValidEmail(this.resetPasswordEmail)){
+      console.log(this.resetPasswordEmail);
+      const buttonRef = document.getElementById("closeBtn");
+      buttonRef?.click();
+
+      //API call to be done
+
+      this.resetService.sendResetPasswordLink(this.resetPasswordEmail)
+      .subscribe({
+        next:(res)=>{
+          // this.toast.success({detail: 'Success', summary: 'Reset Success!', duration: 3000,});
+          alert("Reset Success!");
+          this.resetPasswordEmail = "";
+          const buttonRef = document.getElementById("closeBtn");
+          buttonRef?.click();
+        },
+        error:(err)=>{
+          // this.toast.error({detail: 'ERROR', summary: 'Something went wrong!', duration: 3000,});
+          alert("Something went wrong!");
+          console.log(err.response.data);
+        }
+      })
+    }
+  }
 }
