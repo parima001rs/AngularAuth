@@ -13,6 +13,7 @@ import { ResetComponent } from './components/reset/reset.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from './components/table/table.component';
+import { CustomerformComponent } from './components/customerform/customerform.component';
 //import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { TableComponent } from './components/table/table.component';
     DashboardComponent,
     ResetComponent,
     TableComponent,
+    CustomerformComponent,
   ],
   imports: [
     BrowserModule,

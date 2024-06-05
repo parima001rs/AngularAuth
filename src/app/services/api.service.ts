@@ -10,6 +10,7 @@ export class ApiService {
   private custBaseUrl : string = 'https://localhost:7183/api/Customer';
   private devBaseUrl : string = 'https://localhost:7183/api/Device';
 
+
   constructor(private http: HttpClient) { }
 
   getUsers(){
@@ -24,11 +25,11 @@ export class ApiService {
     return this.http.get<any>(this.devBaseUrl);
   }
 
-  // getCustomers(): Observable<any[]> {
-  //   return this.http.get<any[]>(`${this.baseUrl}/customers`);
-  // }
-
   getDevicesById(custId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.devBaseUrl}/${custId}`);
+  }
+
+  createCustomer(custObj: any){
+    return this.http.post<any>(`${this.custBaseUrl}/createCustomer`,custObj)
   }
 }

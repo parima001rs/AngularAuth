@@ -6,6 +6,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ResetComponent } from './components/reset/reset.component';
 import { TableComponent } from './components/table/table.component';
+import { CustomerformComponent } from './components/customerform/customerform.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path: 'reset', component: ResetComponent},
-  {path: 'table', component: TableComponent}
+  {path: 'table', component: TableComponent},
+  {path: 'createCustomer', component: CustomerformComponent}
 ];
 
 @NgModule({
