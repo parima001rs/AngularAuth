@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5 mx-auto">
+            <div class="panel border bg-white">
+                <div class="panel-heading">
+                    <h3 class="pt-3 font-weight-bold">Device Registration</h3>
+                </div>
+                <div class="panel-body p-3">
+                    <form [formGroup]="deviceForm">
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-tablet-alt p-2"></span>
+                                <input formControlName="deviceId" type="text" placeholder="Device Id" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-code p-2"></span>
+                                <input formControlName="applicationId" type="text" placeholder="Application Id" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-calendar-alt p-2"></span>
+                                <input formControlName="startDate" type="date" placeholder="Start Date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-calendar-alt p-2"></span>
+                                <input formControlName="endDate" type="date" placeholder="End Date" class="form-control">
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-block mt-4 w-50" (click)="onRegister()">Register Device</button>
+                        <button class="btn btn-primary btn-block mt-4 w-50" routerLink="/dashboard">Close</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

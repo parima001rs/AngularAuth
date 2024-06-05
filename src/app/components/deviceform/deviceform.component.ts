@@ -5,30 +5,32 @@ import ValidateForm from 'src/app/helpers/validateform';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-customerform',
-  templateUrl: './customerform.component.html',
-  styleUrls: ['./customerform.component.scss']
+  selector: 'app-deviceform',
+  templateUrl: './deviceform.component.html',
+  styleUrls: ['./deviceform.component.scss']
 })
-export class CustomerformComponent implements OnInit {
-  customerForm! : FormGroup;
+export class DeviceformComponent implements OnInit {
+  deviceForm! : FormGroup;
   
   constructor(private fb: FormBuilder, private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    this.customerForm = this.fb.group({
-      Name: ['',Validators.required],
-      email: ['',Validators.required],
+    this.deviceForm = this.fb.group({
+      deviceId: ['',Validators.required],
+      applicationId: ['',Validators.required],
+      startDate: ['',Validators.required],
+      endDate: ['',Validators.required],
     })
   }
 
-  onCreate(){
-    if(this.customerForm.valid){
+  onRegister(){
+    if(this.deviceForm.valid){
       //perform logic for sign up
-      this.api.createCustomer(this.customerForm.value)
+      this.api.registerDevice(this.deviceForm.value)
       .subscribe({
         next:(res=>{
           alert(res.message);
-          this.customerForm.reset();
+          this.deviceForm.reset();
           this.router.navigate(['dashboard']);
         }),
         error:(err=>{
@@ -37,13 +39,10 @@ export class CustomerformComponent implements OnInit {
       })
     }
     else{
-      ValidateForm.validateAllFormFields(this.customerForm);
+      ValidateForm.validateAllFormFields(this.deviceForm);
       //logic for throwing error
     }
   }
   
 
 }
-
-
-

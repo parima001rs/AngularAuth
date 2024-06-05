@@ -14,6 +14,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from './components/table/table.component';
 import { CustomerformComponent } from './components/customerform/customerform.component';
+import { DeviceformComponent } from './components/deviceform/deviceform.component';
 //import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { CustomerformComponent } from './components/customerform/customerform.co
     ResetComponent,
     TableComponent,
     CustomerformComponent,
+    DeviceformComponent,
   ],
   imports: [
     BrowserModule,

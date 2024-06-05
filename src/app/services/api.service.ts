@@ -32,4 +32,8 @@ export class ApiService {
   createCustomer(custObj: any){
     return this.http.post<any>(`${this.custBaseUrl}/createCustomer`,custObj)
   }
+
+  registerDevice(devObj: any){
+    return this.http.post<any>(`${this.devBaseUrl}/registerDevice`,devObj)
+  }
 }

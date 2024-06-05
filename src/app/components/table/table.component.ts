@@ -12,7 +12,7 @@ export class TableComponent implements OnInit {
   public customers: any = [];
   // public customers: Customer[] = [];
   public devices: any = [];
-  
+
   public isPlanActive(value: number): boolean {
     return value === 1;
   }
@@ -28,7 +28,7 @@ export class TableComponent implements OnInit {
           this.api.getDevicesById(customer.customerId)
             .subscribe(devices => {
               customer.devices = devices; // Add a new property to each customer for their devices
-              console.log(devices);
+              // console.log(devices);
             });
         });
       });

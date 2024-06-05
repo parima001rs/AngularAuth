@@ -24,9 +24,9 @@
                             </div>
                             <small *ngIf="customerForm.controls['email'].dirty && customerForm.hasError('required', 'email')" class="text-danger">*Email is required</small>
                             
-                           
+                           <br>
                             <button type="submit" class="btn btn-primary btn-block mt-4 w-50" (click)="onCreate()">Create</button>
-                            <button class="btn btn-primary btn-block mt-4 w-50"(click)="onClose()">Close</button>
+                            <button class="btn btn-primary btn-block mt-4 w-50" routerLink="/dashboard">Close</button>
                         </form>
                     </div>
                 </div>
