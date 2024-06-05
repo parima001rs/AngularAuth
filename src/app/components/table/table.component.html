@@ -180,8 +180,8 @@
                             <tr>
                                 <td colspan="6" class="hiddenRow">
                                     <div class="collapse" [id]="'collapse' + i"> 
-                                        <!-- <table class="table table-striped" *ngIf="customer.devices"> -->
-                                            <table class="table table-striped">
+                                        <table class="table table-striped" *ngIf="customer.devices">
+                                            <!-- <table class="table table-striped"> -->
                                             <thead>
                                                 <tr class="info">
                                                     <th>Device Id</th>
@@ -193,18 +193,15 @@
                                                 </tr>
                                             </thead>	
                                             <tbody>			
-                                                <!-- <tr class="SecondTable" *ngFor="let device of customer.devices"> -->
-                                                    <tr class="SecondTable">
-                                                    <td>dev1000000000002</td>
-                                                    <td>1230000043</td>
-                                                    <td>2024/06/05</td>
-                                                    <td>2024/07/04</td>
-                                                    <td>Active</td>
-                                                    <!-- <td>{{device.deviceId}}</td>
+                                                <tr class="SecondTable" *ngFor="let device of customer.devices">
+                                                    <!-- <tr class="SecondTable"> -->
+                                                    <td>{{device.deviceId}}</td>
                                                     <td>{{device.applicationId}}</td>
                                                     <td>{{device.startDate}}</td>
                                                     <td>{{device.endDate}}</td>
-                                                    <td>{{device.IsPlanActive}}</td> -->
+                                                    <!-- <td>{{device.IsPlanActive}}</td> -->
+                                                    <td>{{ isPlanActive(device.IsPlanActive) ? 'false' : 'true' }}</td>
+
                                                     <td>
                                                         <i class="fa fa-solid fa-trash" style="margin-right: 10px;"></i>
                                                         <i class="fa fa-pencil-square-o"></i>
