@@ -1,0 +1,230 @@
+<!-- <div class="container">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Subscription Tracking
+                </div>
+                <div class="panel-body">
+                    <table class="table table-condensed table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>#</th>
+                                <th>CustomerId</th>
+                                <th>Customer Name</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let customer of customers; let i=index" >
+                                <td>
+                                    <button class="btn btn-default btn-xs" data-bs-toggle="collapse" data-bs-target="#demo1" aria-expanded="false" aria-controls="collapseExample">
+                                        Show<i class="fa fa-eye"></i>
+                                    </button>
+                                </td>
+                                <td>{{i+1}}</td>
+                                <td>{{customer.customerId}}</td>
+                                <td>{{customer.name}}</td>
+                                <td>{{customer.email}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="hiddenRow">
+                                    <div class="collapse"  id="demo1"> 
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr class="info">
+                                                    <th>Device Id</th>
+                                                    <th>Application Id</th>
+                                                    <th>Start Date</th>		
+                                                    <th>End Date</th>	
+                                                    <th>ActiveStatus</th>	
+                                                    <th>Action</th>	
+                                                </tr>
+                                            </thead>	
+                                            <tbody>			
+                                                <tr class="SecondTable">
+                                                    <td>dev1000000000002</td>
+                                                    <td>1230000043</td>
+                                                    <td>2024/06/05</td>
+                                                    <td>2024/07/04</td>
+                                                    <td>Active</td>
+                                                    <td>
+                                                        <i class="fa fa-solid fa-trash" style="margin-right: 10px;"></i>
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6">
+                                                        <a href="#">+</a>
+                                                    </td>
+                                                </tr>        
+                                            </tbody>
+                                        </table>
+                                    </div> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+  -->
+
+<!-- ====================================================================================== -->
+  <!-- <div class="container">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Subscription Tracking
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>#</th>
+                            <th>CustomerId</th>
+                            <th>Customer Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let customer of customers; let i = index">
+                            <td>
+                                <button class="btn btn-default btn-xs" data-bs-toggle="collapse" [attr.data-bs-target]="'#demo' + i" aria-expanded="false" [attr.aria-controls]="'demo' + i">
+                                    Show<i class="fa fa-eye"></i>
+                                </button>
+                            </td>
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ customer.customerId }}</td>
+                            <td>{{ customer.name }}</td>
+                            <td>{{ customer.email }}</td>
+                        </tr>
+                        <tr *ngFor="let customer of customers; let i = index">
+                            <td colspan="6" class="hiddenRow">
+                                <div class="collapse" [id]="'demo' + i"> 
+                                    <table class="table table-striped">
+                                            <thead>
+                                                <tr class="info">
+                                                    <th>Device Id</th>
+                                                    <th>Application Id</th>
+                                                    <th>Start Date</th>		
+                                                    <th>End Date</th>	
+                                                    <th>ActiveStatus</th>	
+                                                    <th>Action</th>	
+                                                </tr>
+                                            </thead>	
+                                            <tbody>			
+                                                <tr class="SecondTable">
+                                                    <td>dev1000000000002</td>
+                                                    <td>1230000043</td>
+                                                    <td>2024/06/05</td>
+                                                    <td>2024/07/04</td>
+                                                    <td>Active</td>
+                                                    <td>
+                                                        <i class="fa fa-solid fa-trash" style="margin-right: 10px;"></i>
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6">
+                                                        <a href="#">+</a>
+                                                    </td>
+                                                </tr>        
+                                            </tbody>
+                                    </table>
+                                </div> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- ======================================================================= -->
+
+<div class="container">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Subscription Tracking
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>#</th>
+                            <th>CustomerId</th>
+                            <th>Customer Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let customer of customers; let i = index">
+                            <tr>
+                                <td>
+                                    <button class="btn btn-default btn-xs" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" aria-expanded="false" aria-controls="collapseExample">
+                                        Show<i class="fa fa-eye"></i>
+                                    </button>
+                                </td>
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ customer.customerId }}</td>
+                                <td>{{ customer.name }}</td>
+                                <td>{{ customer.email }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="hiddenRow">
+                                    <div class="collapse" [id]="'collapse' + i"> 
+                                        <!-- <table class="table table-striped" *ngIf="customer.devices"> -->
+                                            <table class="table table-striped">
+                                            <thead>
+                                                <tr class="info">
+                                                    <th>Device Id</th>
+                                                    <th>Application Id</th>
+                                                    <th>Start Date</th>		
+                                                    <th>End Date</th>	
+                                                    <th>ActiveStatus</th>	
+                                                    <th>Action</th>	
+                                                </tr>
+                                            </thead>	
+                                            <tbody>			
+                                                <!-- <tr class="SecondTable" *ngFor="let device of customer.devices"> -->
+                                                    <tr class="SecondTable">
+                                                    <td>dev1000000000002</td>
+                                                    <td>1230000043</td>
+                                                    <td>2024/06/05</td>
+                                                    <td>2024/07/04</td>
+                                                    <td>Active</td>
+                                                    <!-- <td>{{device.deviceId}}</td>
+                                                    <td>{{device.applicationId}}</td>
+                                                    <td>{{device.startDate}}</td>
+                                                    <td>{{device.endDate}}</td>
+                                                    <td>{{device.IsPlanActive}}</td> -->
+                                                    <td>
+                                                        <i class="fa fa-solid fa-trash" style="margin-right: 10px;"></i>
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6">
+                                                        <a href="#">+</a>
+                                                    </td>
+                                                </tr>        
+                                            </tbody>
+                                        </table>
+                                    </div> 
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

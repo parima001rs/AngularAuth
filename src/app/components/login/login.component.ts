@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-//import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validateform';
 import { AuthService } from 'src/app/services/auth.service';
 import { ResetPasswordService } from 'src/app/services/reset-password.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
     private auth: AuthService, 
     private router: Router,
     private userStore: UserStoreService,
-    private resetService: ResetPasswordService
-    //private toast: NgToastService
+    private resetService: ResetPasswordService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -49,19 +49,24 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.loginForm.value)
       .subscribe({
         next:(res)=>{
-          //console.log(res.message);
+          console.log(res.message);
           this.loginForm.reset();
           this.auth.storeToken(res.accessToken);
           this.auth.storeRefreshToken(res.refreshToken);
           const tokenPayload = this.auth.decodedToken();
           this.userStore.setFullNameForStore(tokenPayload.name);
           this.userStore.setRoleForStore(tokenPayload.role);
-          alert(res.message);
-          //this.toast.success({detail:"SUCCESS", summary:res.message, duration: 5000});
+          // alert(res.message);
+          this.toastr.success('Login Success!', '', {
+            timeOut: 5000,
+          });
           this.router.navigate(['dashboard']);
         },
         error:(err)=>{
-          alert(err?.error.message)
+          // alert(err?.error.message)
+          this.toastr.error('Something went wrong', err.message, {
+            timeOut: 5000,
+          });
           //this.toast.error({detail:"ERROR", summary:"Something went wrong", duration: 5000});
           console.log(err);
         }

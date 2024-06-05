@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -10,6 +10,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ResetComponent } from './components/reset/reset.component';
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+import { TableComponent } from './components/table/table.component';
 //import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
@@ -18,7 +21,8 @@ import { ResetComponent } from './components/reset/reset.component';
     LoginComponent,
     SignupComponent,
     DashboardComponent,
-    ResetComponent
+    ResetComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +30,9 @@ import { ResetComponent } from './components/reset/reset.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     //NgToastModule
   ],
   providers: [{
