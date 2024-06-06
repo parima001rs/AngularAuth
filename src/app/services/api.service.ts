@@ -33,7 +33,11 @@ export class ApiService {
     return this.http.post<any>(`${this.custBaseUrl}/createCustomer`,custObj)
   }
 
-  registerDevice(devObj: any){
-    return this.http.post<any>(`${this.devBaseUrl}/registerDevice`,devObj)
+  // registerDevice(device: any){
+  //   return this.http.post<any>(`${this.devBaseUrl}/registerDevice`,device)
+  // }
+
+  registerDevice(device: any): Observable<any> {
+    return this.http.post<any>(`${this.devBaseUrl}/registerDevice`,device);
   }
 }

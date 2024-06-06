@@ -17,7 +17,8 @@ const routes: Routes = [
   {path: 'reset', component: ResetComponent},
   {path: 'table', component: TableComponent},
   {path: 'createCustomer', component: CustomerformComponent},
-  {path: 'registerDevice', component: DeviceformComponent}
+  {path: 'registerDevice', component: DeviceformComponent},
+  { path: 'register-device/:customerId', component: DeviceformComponent }
 ];
 
 @NgModule({

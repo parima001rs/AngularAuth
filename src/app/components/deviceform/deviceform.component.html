@@ -8,32 +8,57 @@
                 <div class="panel-body p-3">
                     <form [formGroup]="deviceForm">
                         <div class="form-group pt-3">
-                            <div class="input-field">
+                            <div class="input-field" [class.error]="deviceForm.controls['deviceId'].dirty && deviceForm.hasError('required', 'deviceId')">
                                 <span class="fa fa-tablet-alt p-2"></span>
                                 <input formControlName="deviceId" type="text" placeholder="Device Id" class="form-control">
                             </div>
                         </div>
+                        <small *ngIf="deviceForm.controls['deviceId'].dirty && deviceForm.hasError('required', 'deviceId')" class="text-danger">*Device Id is required</small>
                         <div class="form-group pt-3">
-                            <div class="input-field">
+                            <div class="input-field" [class.error]="deviceForm.controls['applicationId'].dirty && deviceForm.hasError('required', 'applicationId')">
                                 <span class="fa fa-code p-2"></span>
                                 <input formControlName="applicationId" type="text" placeholder="Application Id" class="form-control">
                             </div>
                         </div>
+                        <small *ngIf="deviceForm.controls['applicationId'].dirty && deviceForm.hasError('required', 'applicationId')" class="text-danger">*Application Id is required</small>
                         <div class="form-group pt-3">
+                            <!-- <div class="input-field" [class.error]="deviceForm.controls['customerId'].dirty && deviceForm.hasError('required', 'customerId')"> -->
                             <div class="input-field">
+                                <span class="fa fa-code p-2"></span>
+                                <input formControlName="custId" type="text" placeholder="Customer Id" class="form-control">
+                            </div>
+                        </div>
+                        <!-- <small *ngIf="deviceForm.controls['customerId'].dirty && deviceForm.hasError('required', 'customerId')" class="text-danger">*Customer Id is required</small> -->
+                        <div class="form-group pt-3">
+                            <div class="input-field" [class.error]="deviceForm.controls['startDate'].dirty && deviceForm.hasError('required', 'startDate')">
                                 <span class="fa fa-calendar-alt p-2"></span>
                                 <input formControlName="startDate" type="date" placeholder="Start Date" class="form-control">
                             </div>
                         </div>
+                        <small *ngIf="deviceForm.controls['startDate'].dirty && deviceForm.hasError('required', 'startDate')" class="text-danger">*Start Date is required</small>
                         <div class="form-group pt-3">
-                            <div class="input-field">
+                            <div class="input-field" [class.error]="deviceForm.controls['endDate'].dirty && deviceForm.hasError('required', 'endDate')">
                                 <span class="fa fa-calendar-alt p-2"></span>
                                 <input formControlName="endDate" type="date" placeholder="End Date" class="form-control">
                             </div>
                         </div>
+                        <small *ngIf="deviceForm.controls['endDate'].dirty && deviceForm.hasError('required', 'endDate')" class="text-danger">*End Date is required</small>
+                        <div class="form-group pt-3">
+                            <div class="input-field" [class.error]="deviceForm.controls['isPlanActive'].dirty && deviceForm.hasError('required', 'isPlanActive')">
+                                <span class="fa fa-code p-2"></span>
+                                <!-- <input formControlName="isPlanActive" type="text" placeholder="Active Status" class="form-control"> -->
+                                <label>
+                                    <input formControlName="isPlanActive" type="radio" [value]="true" [checked]="deviceForm.value.isPlanActive === true"> Active
+                                  </label>
+                                  <label>
+                                    <input formControlName="isPlanActive" type="radio" [value]="false" [checked]="deviceForm.value.isPlanActive === false"> Not Active
+                                  </label>
+                            </div>
+                        </div>
+                        <small *ngIf="deviceForm.controls['isPlanActive'].dirty && deviceForm.hasError('required', 'isPlanActive')" class="text-danger">*Active Status is required</small>
                         <br>
                         <button type="submit" class="btn btn-primary btn-block mt-4 w-50" (click)="onRegister()">Register Device</button>
-                        <button class="btn btn-primary btn-block mt-4 w-50" routerLink="/dashboard">Close</button>
+                        <button class="btn btn-primary btn-block mt-4 w-50" routerLink="/table">Close</button>
                     </form>
                 </div>
             </div>
