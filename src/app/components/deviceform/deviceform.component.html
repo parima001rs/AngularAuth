@@ -51,10 +51,10 @@
                             </div>
                         </div>
                         <small *ngIf="deviceForm.controls['endDate'].dirty && deviceForm.hasError('required', 'endDate')" class="text-danger">*End Date is required</small>
-                        <div class="form-group pt-3">
+                        <!-- <div class="form-group pt-3">
                             <div class="input-field" [class.error]="deviceForm.controls['isPlanActive'].dirty && deviceForm.hasError('required', 'isPlanActive')">
                                 <span class="fa fa-code p-2"></span>
-                                <!-- <input formControlName="isPlanActive" type="text" placeholder="Active Status" class="form-control"> -->
+                                 <input formControlName="isPlanActive" type="text" placeholder="Active Status" class="form-control">
                                 <label>
                                     <input formControlName="isPlanActive" type="radio" [value]="true" [checked]="deviceForm.value.isPlanActive === true"> Active
                                   </label>
@@ -63,7 +63,7 @@
                                   </label>
                             </div>
                         </div>
-                        <small *ngIf="deviceForm.controls['isPlanActive'].dirty && deviceForm.hasError('required', 'isPlanActive')" class="text-danger">*Active Status is required</small>
+                        <small *ngIf="deviceForm.controls['isPlanActive'].dirty && deviceForm.hasError('required', 'isPlanActive')" class="text-danger">*Active Status is required</small> -->
                         <br>
                         <button type="submit" class="btn btn-primary btn-block mt-4 w-50" (click)="onRegister()">Register Device</button>
                         <button class="btn btn-primary btn-block mt-4 w-50" routerLink="/table">Close</button>

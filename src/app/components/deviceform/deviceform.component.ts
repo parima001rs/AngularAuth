@@ -23,7 +23,7 @@ export class DeviceformComponent implements OnInit {
       applicationId: ['',Validators.required],
       startDate: ['',Validators.required],
       endDate: ['',Validators.required],
-      isPlanActive: ['',Validators.required]
+      // isPlanActive: ['',Validators.required]
     })
 
     this.route.params.subscribe(params => {

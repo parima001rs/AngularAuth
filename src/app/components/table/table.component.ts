@@ -11,6 +11,8 @@ import { ApiService } from 'src/app/services/api.service';
 export class TableComponent implements OnInit {
   public customers: any = [];
   public devices: any = [];
+  // public devicesArray: any[] = [];
+  // public devicesNewArray: any;
 
   public isPlanActive(value: number): boolean {
     return value === 1;
@@ -34,6 +36,22 @@ export class TableComponent implements OnInit {
 
       
 
+  }
+
+  onEdit(deviceObj: any) {
+    deviceObj.isEdit = true;
+  }
+
+  onUpdate(){
+    
+  }
+
+  onDelete(){
+    
+  }
+
+  onCancel(deviceObj: any){
+    deviceObj.isEdit = false;
   }
   // updateDevice(device: any) {
   //   console.log(device);

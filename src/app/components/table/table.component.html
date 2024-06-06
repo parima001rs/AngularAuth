@@ -50,14 +50,34 @@
                                                     <!-- <tr class="SecondTable"> -->
                                                     <td>{{device.deviceId}}</td>
                                                     <td>{{device.applicationId}}</td>
-                                                    <td>{{device.startDate}}</td>
-                                                    <td>{{device.endDate}}</td>
-                                                    <!-- <td>{{device.IsPlanActive}}</td> -->
-                                                    <td>{{ isPlanActive(device.IsPlanActive) ? 'false' : 'true' }}</td>
-
                                                     <td>
-                                                        <i class="fa fa-solid fa-trash" style="margin-right: 10px;"></i>
-                                                        <i class="fa fa-pencil-square-o" ></i>
+                                                        <div *ngIf="device.isEdit">
+                                                            <input type="text" class="form-control" [(ngModel)]="device.startDate">
+                                                        </div>
+                                                        <div  *ngIf="!device.isEdit">
+                                                            {{device.startDate}}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div *ngIf="device.isEdit">
+                                                            <input type="text" class="form-control" [(ngModel)]="device.endDate">
+                                                        </div>
+                                                        <div  *ngIf="!device.isEdit">
+                                                            {{device.endDate}}
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ isPlanActive(device.IsPlanActive) ? 'true' : 'false' }}</td>
+
+                                                    <td class="text-center"> 
+                                                        <div *ngIf="!device.isEdit">
+                                                            <i class="fa fa-pencil-square-o px-1" aria-hidden="true" (click)="onEdit(device)"></i>
+                                                            <i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete()"></i>
+                                                        </div>
+                                                        <div *ngIf="device.isEdit">
+                                                            <i class="fa fa-cloud px-1" (click)="onUpdate()" aria-hidden="true"></i>
+                                                            <i class="fa fa-times-circle" aria-hidden="true" (click)="onCancel(device)"></i>
+                                                        </div>
+                                                       
                                                     </td>
                                                 </tr>
                                                 <tr>
