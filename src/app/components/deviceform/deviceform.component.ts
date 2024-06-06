@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import ValidateForm from 'src/app/helpers/validateform';
+import { guidValidator } from 'src/app/helpers/validateguid';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class DeviceformComponent implements OnInit {
   ngOnInit(): void {
     this.deviceForm = this.fb.group({
       custId: [''],
-      deviceId: ['',Validators.required],
+      // deviceId: ['',Validators.required],
+      deviceId: ['', [Validators.required, guidValidator()]],
       applicationId: ['',Validators.required],
       startDate: ['',Validators.required],
       endDate: ['',Validators.required],

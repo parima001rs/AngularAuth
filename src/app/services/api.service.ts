@@ -40,4 +40,8 @@ export class ApiService {
   registerDevice(device: any): Observable<any> {
     return this.http.post<any>(`${this.devBaseUrl}/registerDevice`,device);
   }
+
+  updateDevice(deviceId: string, updatePayload: any): Observable<any> {
+    return this.http.put<any>(`${this.devBaseUrl}/${deviceId}`, updatePayload);
+  }
 }

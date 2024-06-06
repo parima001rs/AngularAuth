@@ -8,12 +8,20 @@
                 <div class="panel-body p-3">
                     <form [formGroup]="deviceForm">
                         <div class="form-group pt-3">
+                            <div class="input-field" [class.error]="deviceForm.controls['deviceId'].dirty && deviceForm.controls['deviceId'].invalid">
+                              <span class="fa fa-tablet-alt p-2"></span>
+                              <input formControlName="deviceId" type="text" placeholder="Device Id" class="form-control">
+                            </div>
+                          </div>
+                          <small *ngIf="deviceForm.controls['deviceId'].dirty && deviceForm.controls['deviceId'].hasError('required')" class="text-danger">*Device Id is required</small>
+                          <small *ngIf="deviceForm.controls['deviceId'].dirty && deviceForm.controls['deviceId'].hasError('invalidGuid')" class="text-danger">*Device Id must be a valid GUID</small>
+                        <!-- <div class="form-group pt-3">
                             <div class="input-field" [class.error]="deviceForm.controls['deviceId'].dirty && deviceForm.hasError('required', 'deviceId')">
                                 <span class="fa fa-tablet-alt p-2"></span>
                                 <input formControlName="deviceId" type="text" placeholder="Device Id" class="form-control">
                             </div>
                         </div>
-                        <small *ngIf="deviceForm.controls['deviceId'].dirty && deviceForm.hasError('required', 'deviceId')" class="text-danger">*Device Id is required</small>
+                        <small *ngIf="deviceForm.controls['deviceId'].dirty && deviceForm.hasError('required', 'deviceId')" class="text-danger">*Device Id is required</small> -->
                         <div class="form-group pt-3">
                             <div class="input-field" [class.error]="deviceForm.controls['applicationId'].dirty && deviceForm.hasError('required', 'applicationId')">
                                 <span class="fa fa-code p-2"></span>
@@ -25,7 +33,7 @@
                             <!-- <div class="input-field" [class.error]="deviceForm.controls['customerId'].dirty && deviceForm.hasError('required', 'customerId')"> -->
                             <div class="input-field">
                                 <span class="fa fa-code p-2"></span>
-                                <input formControlName="custId" type="text" placeholder="Customer Id" class="form-control">
+                                <input formControlName="custId" type="string" placeholder="Customer Id" class="form-control">
                             </div>
                         </div>
                         <!-- <small *ngIf="deviceForm.controls['customerId'].dirty && deviceForm.hasError('required', 'customerId')" class="text-danger">*Customer Id is required</small> -->

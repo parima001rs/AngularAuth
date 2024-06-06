@@ -10,7 +10,6 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class TableComponent implements OnInit {
   public customers: any = [];
-  // public customers: Customer[] = [];
   public devices: any = [];
 
   public isPlanActive(value: number): boolean {
@@ -33,6 +32,28 @@ export class TableComponent implements OnInit {
         });
       });
 
+      
+
   }
+  // updateDevice(device: any) {
+  //   console.log(device);
+  //   const updatePayload = {
+  //     // ... properties you want to update ...
+  //     startDate: device.startDate,
+  //     endDate: device.endDate,
+  //     isPlanActive: device.isPlanActive
+  //   };
+  
+  //   this.api.updateDevice(device.deviceId, updatePayload).subscribe({
+  //     next: (response) => {
+  //       // Handle the successful update
+  //       console.log('Device updated successfully', response);
+  //     },
+  //     error: (error) => {
+  //       // Handle any errors
+  //       console.error('Error updating device', error);
+  //     }
+  //   });
+  // }
 
 }
