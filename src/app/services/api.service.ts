@@ -42,6 +42,17 @@ export class ApiService {
   }
 
   updateDevice(deviceId: string, updatePayload: any): Observable<any> {
-    return this.http.put<any>(`${this.devBaseUrl}/${deviceId}`, updatePayload);
+    return this.http.put<any>(`${this.devBaseUrl}/updateDevice/${deviceId}`, updatePayload);
   }
+
+  // deleteDevice(device: any): Observable<any> {
+  //   return this.http.delete<any>(`${this.devBaseUrl}/deleteDevice`, device);
+  // }
+
+  deleteDevice(deviceId: any): Observable<any> {
+    return this.http.delete<any>(`${this.devBaseUrl}/deleteDevice/${deviceId}`);
+}
+
+
+  
 }

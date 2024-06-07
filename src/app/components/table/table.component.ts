@@ -42,36 +42,35 @@ export class TableComponent implements OnInit {
     deviceObj.isEdit = true;
   }
 
-  onUpdate(){
-    
+  onUpdate(device: any): void {
+    const updatePayload = {
+      startDate: device.startDate,
+      endDate: device.endDate
+    };
+    this.api.updateDevice(device.deviceId, updatePayload).subscribe({
+      next: (response) => {
+        console.log('Update successful', response);
+        device.isEdit = false; // Hide the input fields after successful update
+      },
+      error: (error) => {
+        console.error('Update failed', error);
+      }
+    });
   }
 
-  onDelete(){
-    
-  }
+  onDelete(device: any){
+    this.api.deleteDevice(device.deviceId).subscribe({
+      next: (response) => {
+        console.log('Delete successful', response);
+      },
+      error: (error) => {
+        console.error('Delete failed', error);
+      }
+    });
+}
+
 
   onCancel(deviceObj: any){
     deviceObj.isEdit = false;
   }
-  // updateDevice(device: any) {
-  //   console.log(device);
-  //   const updatePayload = {
-  //     // ... properties you want to update ...
-  //     startDate: device.startDate,
-  //     endDate: device.endDate,
-  //     isPlanActive: device.isPlanActive
-  //   };
-  
-  //   this.api.updateDevice(device.deviceId, updatePayload).subscribe({
-  //     next: (response) => {
-  //       // Handle the successful update
-  //       console.log('Device updated successfully', response);
-  //     },
-  //     error: (error) => {
-  //       // Handle any errors
-  //       console.error('Error updating device', error);
-  //     }
-  //   });
-  // }
-
 }

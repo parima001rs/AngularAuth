@@ -42,13 +42,15 @@ export class DeviceformComponent implements OnInit {
       this.api.registerDevice(this.deviceForm.value)
       .subscribe({
         next:(res=>{
-          console.log("success");
           alert(res.message);
+          console.log("success");
+          // alert(res.message);
           this.deviceForm.reset();
           this.router.navigate(['table']);
         }),
         error:(err=>{
-          alert(err?.error.message)
+          console.log(err);
+          alert(err.error.message);
         })
       })
     }

@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Subscription Tracking
+                <h2>Subscription Tracking</h2>
             </div>
             <div class="panel-body">
                 <table class="table table-condensed table-striped">
@@ -15,6 +15,7 @@
                             <th>CustomerId</th>
                             <th>Customer Name</th>
                             <th>Email</th>
+                            <th>Allowed Resources</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,6 +30,7 @@
                                 <td>{{ customer.customerId }}</td>
                                 <td>{{ customer.name }}</td>
                                 <td>{{ customer.email }}</td>
+                                <td>{{ customer.allowedResources }}</td>
                             </tr>
                             <tr>
                                 <td colspan="6" class="hiddenRow">
@@ -71,10 +73,10 @@
                                                     <td class="text-center"> 
                                                         <div *ngIf="!device.isEdit">
                                                             <i class="fa fa-pencil-square-o px-1" aria-hidden="true" (click)="onEdit(device)"></i>
-                                                            <i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete()"></i>
+                                                            <i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete(device)"></i>
                                                         </div>
                                                         <div *ngIf="device.isEdit">
-                                                            <i class="fa fa-cloud px-1" (click)="onUpdate()" aria-hidden="true"></i>
+                                                            <i class="fa fa-cloud px-1" (click)="onUpdate(device)" aria-hidden="true"></i>
                                                             <i class="fa fa-times-circle" aria-hidden="true" (click)="onCancel(device)"></i>
                                                         </div>
                                                        

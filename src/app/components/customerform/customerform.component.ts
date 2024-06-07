@@ -18,6 +18,7 @@ export class CustomerformComponent implements OnInit {
     this.customerForm = this.fb.group({
       Name: ['',Validators.required],
       email: ['',Validators.required],
+      allowedResources: ['',Validators.required]
     })
   }
 

@@ -49,18 +49,22 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.loginForm.value)
       .subscribe({
         next:(res)=>{
-          console.log(res.message);
+          alert(res.message);
+          // console.log(res.message);
+          // alert(res.message);
+          // this.toastr.success('Login Success!', '', {
+          //   timeOut: 5000,
+          // });
+          
           this.loginForm.reset();
+          this.router.navigate(['dashboard']);
           this.auth.storeToken(res.accessToken);
           this.auth.storeRefreshToken(res.refreshToken);
           const tokenPayload = this.auth.decodedToken();
           this.userStore.setFullNameForStore(tokenPayload.name);
           this.userStore.setRoleForStore(tokenPayload.role);
-          // alert(res.message);
-          this.toastr.success('Login Success!', '', {
-            timeOut: 5000,
-          });
-          this.router.navigate(['dashboard']);
+          
+          
         },
         error:(err)=>{
           // alert(err?.error.message)
