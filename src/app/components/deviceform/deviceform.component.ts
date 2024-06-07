@@ -21,8 +21,8 @@ export class DeviceformComponent implements OnInit {
       // deviceId: ['',Validators.required],
       deviceId: ['', [Validators.required, guidValidator()]],
       applicationId: ['',Validators.required],
-      startDate: ['',Validators.required],
-      endDate: ['',Validators.required],
+      // startDate: ['',Validators.required],
+      // endDate: ['',Validators.required],
       // isPlanActive: ['',Validators.required]
     })
 

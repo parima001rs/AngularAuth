@@ -8,6 +8,7 @@ import { ResetComponent } from './components/reset/reset.component';
 import { TableComponent } from './components/table/table.component';
 import { CustomerformComponent } from './components/customerform/customerform.component';
 import { DeviceformComponent } from './components/deviceform/deviceform.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
@@ -15,10 +16,11 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path: 'reset', component: ResetComponent},
-  {path: 'table', component: TableComponent},
+  {path: 'table', component: TableComponent, canActivate:[AuthGuard]},
   {path: 'createCustomer', component: CustomerformComponent},
   {path: 'registerDevice', component: DeviceformComponent},
-  { path: 'register-device/:customerId', component: DeviceformComponent }
+  { path: 'register-device/:customerId', component: DeviceformComponent },
+  { path: 'navbar', component: NavbarComponent }
 ];
 
 @NgModule({

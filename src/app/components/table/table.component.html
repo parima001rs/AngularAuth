@@ -1,4 +1,8 @@
-<button routerLink="/createCustomer" >Add Customers</button>
+<app-navbar></app-navbar>
+<ng-container *ngIf="role === 'Admin'">
+    <button routerLink="/createCustomer" >Add Customers</button>
+</ng-container>
+
 
 <div class="container">
     <div class="col-md-12">
@@ -43,8 +47,11 @@
                                                     <th>Application Id</th>
                                                     <th>Start Date</th>		
                                                     <th>End Date</th>	
-                                                    <th>ActiveStatus</th>	
-                                                    <th>Action</th>	
+                                                    <th>Plan Status</th>	
+                                                    <ng-container *ngIf="role === 'Admin'">
+                                                        <th>Action</th>	
+                                                    </ng-container>
+                                                    
                                                 </tr>
                                             </thead>	
                                             <tbody>			
@@ -68,23 +75,29 @@
                                                             {{device.endDate}}
                                                         </div>
                                                     </td>
-                                                    <td>{{ isPlanActive(device.IsPlanActive) ? 'true' : 'false' }}</td>
+                                                    <td>{{ isPlanActive(device.IsPlanActive) ? 'Active' : 'InActive' }}</td>
 
                                                     <td class="text-center"> 
-                                                        <div *ngIf="!device.isEdit">
-                                                            <i class="fa fa-pencil-square-o px-1" aria-hidden="true" (click)="onEdit(device)"></i>
-                                                            <i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete(device)"></i>
-                                                        </div>
-                                                        <div *ngIf="device.isEdit">
-                                                            <i class="fa fa-cloud px-1" (click)="onUpdate(device)" aria-hidden="true"></i>
-                                                            <i class="fa fa-times-circle" aria-hidden="true" (click)="onCancel(device)"></i>
-                                                        </div>
+                                                        <ng-container *ngIf="role === 'Admin'">
+                                                            <div *ngIf="!device.isEdit">
+                                                                <i class="fa fa-pencil-square-o px-1" aria-hidden="true" (click)="onEdit(device)"></i>
+                                                                <i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete(device)"></i>
+                                                            </div>
+                                                            <div *ngIf="device.isEdit">
+                                                                <i class="fa fa-cloud px-1" (click)="onUpdate(device)" aria-hidden="true"></i>
+                                                                <i class="fa fa-times-circle" aria-hidden="true" (click)="onCancel(device)"></i>
+                                                            </div>
+                                                        </ng-container>
+                                                        
                                                        
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="6">
-                                                        <a [routerLink]="['/register-device', customer.customerId]">Add more Devices +</a>
+                                                        <ng-container *ngIf="role === 'Admin'">
+                                                            <a [routerLink]="['/register-device', customer.customerId]">Add more Devices +</a>
+                                                        </ng-container>
+                                                        
                                                     </td>
                                                 </tr>        
                                             </tbody>

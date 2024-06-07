@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { from, map, mergeMap, switchMap, toArray, Observable } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserStoreService } from 'src/app/services/user-store.service';
 
 
 @Component({
@@ -11,17 +13,25 @@ import { ApiService } from 'src/app/services/api.service';
 export class TableComponent implements OnInit {
   public customers: any = [];
   public devices: any = [];
-  // public devicesArray: any[] = [];
-  // public devicesNewArray: any;
+  public fullName: string = "";
+  public role!: string;
 
   public isPlanActive(value: number): boolean {
     return value === 1;
   }
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private auth: AuthService, private userStore: UserStoreService) { }
 
   ngOnInit(): void {
 
+    //to get role
+    this.userStore.getRoleFromStore()
+    .subscribe(val =>{
+      const roleFromToken = this.auth.getRoleFromToken();
+      this.role = val || roleFromToken;
+    });
+
+    //to get customer and their resp. devices
     this.api.getCustomers()
       .subscribe(customers => {
         this.customers = customers;

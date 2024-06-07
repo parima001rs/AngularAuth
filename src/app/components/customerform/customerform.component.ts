@@ -30,7 +30,7 @@ export class CustomerformComponent implements OnInit {
         next:(res=>{
           alert(res.message);
           this.customerForm.reset();
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['table']);
         }),
         error:(err=>{
           alert(err?.error.message)

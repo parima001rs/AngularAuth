@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { TableComponent } from './components/table/table.component';
 import { CustomerformComponent } from './components/customerform/customerform.component';
 import { DeviceformComponent } from './components/deviceform/deviceform.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 //import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { DeviceformComponent } from './components/deviceform/deviceform.componen
     TableComponent,
     CustomerformComponent,
     DeviceformComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

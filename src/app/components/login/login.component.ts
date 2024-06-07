@@ -57,14 +57,12 @@ export class LoginComponent implements OnInit {
           // });
           
           this.loginForm.reset();
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['table']);
           this.auth.storeToken(res.accessToken);
           this.auth.storeRefreshToken(res.refreshToken);
           const tokenPayload = this.auth.decodedToken();
           this.userStore.setFullNameForStore(tokenPayload.name);
           this.userStore.setRoleForStore(tokenPayload.role);
-          
-          
         },
         error:(err)=>{
           // alert(err?.error.message)
