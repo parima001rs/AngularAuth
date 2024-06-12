@@ -12,7 +12,6 @@ export class NavbarComponent implements OnInit {
 
   public users: any = [];
   public fullName: string = "";
-  public role!: string;
   constructor(private api: ApiService, private auth: AuthService, private userStore: UserStoreService) { }
 
   ngOnInit(): void {

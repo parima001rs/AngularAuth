@@ -3,6 +3,8 @@ import { from, map, mergeMap, switchMap, toArray, Observable } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CustomerformComponent } from '../customerform/customerform.component';
 
 
 @Component({
@@ -19,8 +21,12 @@ export class TableComponent implements OnInit {
   public isPlanActive(value: number): boolean {
     return value === 1;
   }
-
-  constructor(private api: ApiService, private auth: AuthService, private userStore: UserStoreService) { }
+  
+ 
+  constructor(private api: ApiService, 
+    private auth: AuthService, 
+    private userStore: UserStoreService,
+    private dialogRef: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -47,6 +53,7 @@ export class TableComponent implements OnInit {
       
 
   }
+
 
   onEdit(deviceObj: any) {
     deviceObj.isEdit = true;

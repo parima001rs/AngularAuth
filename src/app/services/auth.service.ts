@@ -54,7 +54,7 @@ export class AuthService {
   decodedToken(){
     const jwtHelper = new JwtHelperService();
     const token = this.getToken()!; //non-null assertion operator
-    console.log(jwtHelper.decodeToken(token));
+    // console.log(jwtHelper.decodeToken(token));
     return jwtHelper.decodeToken(token);
   }
 

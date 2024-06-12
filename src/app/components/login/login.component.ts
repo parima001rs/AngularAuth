@@ -49,12 +49,12 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.loginForm.value)
       .subscribe({
         next:(res)=>{
-          alert(res.message);
+          // alert(res.message);
           // console.log(res.message);
           // alert(res.message);
-          // this.toastr.success('Login Success!', '', {
-          //   timeOut: 5000,
-          // });
+          this.toastr.success('Login Success!', '', {
+            timeOut: 5000,
+          });
           
           this.loginForm.reset();
           this.router.navigate(['table']);
@@ -69,7 +69,6 @@ export class LoginComponent implements OnInit {
           this.toastr.error('Something went wrong', err.message, {
             timeOut: 5000,
           });
-          //this.toast.error({detail:"ERROR", summary:"Something went wrong", duration: 5000});
           console.log(err);
         }
       })
@@ -89,7 +88,7 @@ export class LoginComponent implements OnInit {
   
   confirmToReset(){
     if(this.checkValidEmail(this.resetPasswordEmail)){
-      console.log(this.resetPasswordEmail);
+      // console.log(this.resetPasswordEmail);
       const buttonRef = document.getElementById("closeBtn");
       buttonRef?.click();
 
@@ -98,16 +97,21 @@ export class LoginComponent implements OnInit {
       this.resetService.sendResetPasswordLink(this.resetPasswordEmail)
       .subscribe({
         next:(res)=>{
-          // this.toast.success({detail: 'Success', summary: 'Reset Success!', duration: 3000,});
-          alert("Reset Success!");
+          this.toastr.success('Reset Success!', '', {
+            timeOut: 5000,
+          });
+          // alert("Reset Success!");
           this.resetPasswordEmail = "";
           const buttonRef = document.getElementById("closeBtn");
           buttonRef?.click();
         },
         error:(err)=>{
-          // this.toast.error({detail: 'ERROR', summary: 'Something went wrong!', duration: 3000,});
-          alert("Something went wrong!");
-          console.log(err.response.data);
+          this.toastr.error('Something went wrong', err.message, {
+            timeOut: 5000,
+          });
+          // alert("Something went wrong!");
+          console.log(err.response.data.message);
+        
         }
       })
     }

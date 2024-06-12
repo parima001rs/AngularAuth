@@ -17,6 +17,7 @@ import { CustomerformComponent } from './components/customerform/customerform.co
 import { DeviceformComponent } from './components/deviceform/deviceform.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 //import { NgToastModule } from 'ng-angular-popup';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    MatDialogModule
     //NgToastModule
   ],
   providers: [{
