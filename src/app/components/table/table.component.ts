@@ -17,6 +17,7 @@ export class TableComponent implements OnInit {
   public devices: any = [];
   public fullName: string = "";
   public role!: string;
+  public userId: string = "";
 
   public isPlanActive(value: number): boolean {
     return value === 1;
@@ -36,6 +37,13 @@ export class TableComponent implements OnInit {
       const roleFromToken = this.auth.getRoleFromToken();
       this.role = val || roleFromToken;
     });
+
+    this.userStore.getUserIdFromStore()
+      .subscribe(val =>{
+        const UserIdFromToken = this.auth.getUserIdFromToken();
+        this.userId = val || UserIdFromToken
+        console.log(this.userId);
+      });
 
     //to get customer and their resp. devices
     this.api.getCustomers()
@@ -62,7 +70,8 @@ export class TableComponent implements OnInit {
   onUpdate(device: any): void {
     const updatePayload = {
       startDate: device.startDate,
-      endDate: device.endDate
+      endDate: device.endDate,
+      ModifiedBy: this.userId
     };
     this.api.updateDevice(device.deviceId, updatePayload).subscribe({
       next: (response) => {

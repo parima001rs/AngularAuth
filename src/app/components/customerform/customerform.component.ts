@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import ValidateForm from 'src/app/helpers/validateform';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserStoreService } from 'src/app/services/user-store.service';
 
 
 @Component({
@@ -13,8 +15,13 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class CustomerformComponent implements OnInit {
   customerForm! : FormGroup;
+  public userId: string = "";
   
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private toastr: ToastrService) { }
+  constructor(private fb: FormBuilder, private api: ApiService, 
+    private router: Router, 
+    private toastr: ToastrService,
+    private auth: AuthService, 
+    private userStore: UserStoreService) { }
 
   ngOnInit(): void {
     this.customerForm = this.fb.group({
@@ -22,12 +29,24 @@ export class CustomerformComponent implements OnInit {
       email: ['',Validators.required],
       allowedResources: ['',Validators.required]
     })
+
+    this.userStore.getUserIdFromStore()
+      .subscribe(val =>{
+        const UserIdFromToken = this.auth.getUserIdFromToken();
+        this.userId = val || UserIdFromToken
+        console.log(this.userId);
+      });
   }
 
   onCreate(){
     if(this.customerForm.valid){
       //perform logic for sign up
-      this.api.createCustomer(this.customerForm.value)
+      const customerData = {
+        ...this.customerForm.value,
+        createdBy: this.userId
+      };
+      console.log(customerData);
+      this.api.createCustomer(customerData)
       .subscribe({
         next:(res=>{
           // alert(res.message);

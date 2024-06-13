@@ -13,6 +13,7 @@ export class AuthService {
   private userPayload: any;
   constructor(private http : HttpClient, private router: Router) { 
     this.userPayload = this.decodedToken();
+    console.log(this.userPayload);
   }
 
   signUp(userObj: any){
@@ -68,9 +69,9 @@ export class AuthService {
       return this.userPayload.role;
   }
 
-  getIdFromToken(){
+  getUserIdFromToken(){
     if(this.userPayload)
-      return this.userPayload.Id;
+      return this.userPayload.nameid;
   }
 
   renewToken(tokenApi : TokenApiModel){

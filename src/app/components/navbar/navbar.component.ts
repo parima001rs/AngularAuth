@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
       const FullNameFromToken = this.auth.getFullNameFromToken();
       this.fullName = val || FullNameFromToken
     });
+
   }
 
   logout(){
