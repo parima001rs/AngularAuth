@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import ValidateForm from 'src/app/helpers/validateform';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -13,7 +14,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class CustomerformComponent implements OnInit {
   customerForm! : FormGroup;
   
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router) { }
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.customerForm = this.fb.group({
@@ -29,7 +30,10 @@ export class CustomerformComponent implements OnInit {
       this.api.createCustomer(this.customerForm.value)
       .subscribe({
         next:(res=>{
-          alert(res.message);
+          // alert(res.message);
+          this.toastr.success('New Device Registered Successfully!', '', {
+            timeOut: 5000,
+          });
           this.customerForm.reset();
           this.router.navigate(['table']);
         }),

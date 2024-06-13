@@ -1,17 +1,25 @@
 <app-navbar></app-navbar>
-<ng-container *ngIf="role === 'Admin'">
+<!-- <ng-container *ngIf="role === 'Admin'">
     <button routerLink="/createCustomer" >Add Customers</button>
-</ng-container>
+</ng-container> -->
 
 
 <div class="container">
     <div class="col-md-12">
+
         <div class="panel panel-default">
+            <div  class="d-flex justify-content-end">
+                <ng-container *ngIf="role === 'Admin'">
+                    <button routerLink="/createCustomer" type="button" class="btn btn-outline-secondary" style="margin-top: 20px;">Add Customer</button>
+                </ng-container>
+            </div>
             <div class="panel-heading">
                 <h2>Subscription Tracking</h2>
             </div>
+            <br>
             <div class="panel-body">
-                <table class="table table-condensed table-striped">
+                <div class="table-responsive">
+                <table class="table table-condensed table-striped table-bordered">
                     <thead>
                         <tr>
                             <th></th>
@@ -27,7 +35,7 @@
                             <tr>
                                 <td>
                                     <button class="btn btn-default btn-xs" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" aria-expanded="false" aria-controls="collapseExample">
-                                        Show<i class="fa fa-eye"></i>
+                                        <i class="fa fa-sort-down"></i>
                                     </button>
                                 </td>
                                 <td>{{ i + 1 }}</td>
@@ -95,7 +103,7 @@
                                                 <tr>
                                                     <td colspan="6">
                                                         <ng-container *ngIf="role === 'Admin'">
-                                                            <a [routerLink]="['/register-device', customer.customerId]">Add more Devices +</a>
+                                                            <button type="button" class="btn btn-outline-secondary" [routerLink]="['/register-device', customer.customerId]">Add Devices <i class="fa fa-plus"></i></button>
                                                         </ng-container>
                                                         
                                                     </td>
@@ -109,7 +117,9 @@
                     </tbody>
                 </table>
             </div>
+            </div>
         </div>
     </div>
 </div>
 
+<app-footer></app-footer>

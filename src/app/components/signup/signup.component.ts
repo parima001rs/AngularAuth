@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import ValidateForm from 'src/app/helpers/validateform';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -16,7 +17,7 @@ export class SignupComponent implements OnInit {
   eyeIcon: string = "fa-eye-slash";
   signUpForm! : FormGroup;
   
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
@@ -40,7 +41,10 @@ export class SignupComponent implements OnInit {
       this.auth.signUp(this.signUpForm.value)
       .subscribe({
         next:(res=>{
-          alert(res.message);
+          //alert(res.message);
+          this.toastr.success('', res.message, {
+            timeOut: 5000,
+          });
           this.signUpForm.reset();
           this.router.navigate(['login']);
         }),

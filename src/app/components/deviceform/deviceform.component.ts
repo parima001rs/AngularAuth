@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import ValidateForm from 'src/app/helpers/validateform';
 import { guidValidator } from 'src/app/helpers/validateguid';
 import { ApiService } from 'src/app/services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-deviceform',
@@ -13,7 +14,11 @@ import { ApiService } from 'src/app/services/api.service';
 export class DeviceformComponent implements OnInit {
   deviceForm! : FormGroup;
   
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router,private route: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, 
+    private api: ApiService, 
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.deviceForm = this.fb.group({
@@ -37,14 +42,17 @@ export class DeviceformComponent implements OnInit {
   onRegister(){
     if(this.deviceForm.valid){
       //perform logic for sign up
-      console.log(this.deviceForm.value);
-      console.log(this.deviceForm.valid);
+      // console.log(this.deviceForm.value);
+      // console.log(this.deviceForm.valid);
       this.api.registerDevice(this.deviceForm.value)
       .subscribe({
         next:(res=>{
-          alert(res.message);
+          // alert(res.message);
           console.log("success");
           // alert(res.message);
+          this.toastr.success('New Device Registered Successfully!', '', {
+            timeOut: 5000,
+          });
           this.deviceForm.reset();
           this.router.navigate(['table']);
         }),

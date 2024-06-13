@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
 
   onLogin(){
     if(this.loginForm.valid){
-      console.log(this.loginForm.value);
+      // console.log(this.loginForm.value);
       //send the obj to database
       this.auth.login(this.loginForm.value)
       .subscribe({

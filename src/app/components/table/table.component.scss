@@ -3,8 +3,28 @@ body{
 	background-color:#34495e;
 }
 
-
-
 .hiddenRow {
     padding: 0 !important;
+}
+
+.panel {
+	margin-top: auto;
+}
+
+td{
+	padding-top: 1.6rem;
+}
+
+.btn{
+    margin-top: auto;
+    // border-radius: 15px;
+}
+
+table{
+	justify-content: center !important;
+}
+
+.fa-sort-down{
+	font-size: 20px;
+
 }
