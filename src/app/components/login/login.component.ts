@@ -50,14 +50,12 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next:(res)=>{
           // alert(res.message);
-          // console.log(res.message);
-          // alert(res.message);
           this.toastr.success('Login Success!', '', {
             timeOut: 5000,
           });
           
           this.loginForm.reset();
-          this.router.navigate(['table']);
+          this.router.navigate(['dashboard']);
           this.auth.storeToken(res.accessToken);
           this.auth.storeRefreshToken(res.refreshToken);
           const tokenPayload = this.auth.decodedToken();
@@ -69,7 +67,7 @@ export class LoginComponent implements OnInit {
           this.toastr.error('Something went wrong', err.message, {
             timeOut: 5000,
           });
-          console.log(err);
+          // console.log(err);
         }
       })
     }
@@ -110,7 +108,7 @@ export class LoginComponent implements OnInit {
             timeOut: 5000,
           });
           // alert("Something went wrong!");
-          console.log(err.response.data.message);
+          // console.log(err.response.data.message);
         
         }
       })

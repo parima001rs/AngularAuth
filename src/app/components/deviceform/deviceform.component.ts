@@ -47,7 +47,6 @@ export class DeviceformComponent implements OnInit {
       .subscribe(val =>{
         const UserIdFromToken = this.auth.getUserIdFromToken();
         this.userId = val || UserIdFromToken
-        console.log(this.userId);
       });
   }
 
@@ -64,17 +63,15 @@ export class DeviceformComponent implements OnInit {
       .subscribe({
         next:(res=>{
           // alert(res.message);
-          console.log("success");
-          // alert(res.message);
-          this.toastr.success('New Device Registered Successfully!', '', {
+          this.toastr.success('New Device Registered Successfully!', res.message, {
             timeOut: 5000,
           });
           this.deviceForm.reset();
-          this.router.navigate(['table']);
+          this.router.navigate(['dashboard']);
         }),
         error:(err=>{
-          console.log(err);
-          alert(err.error.message);
+          // alert(err.error.message);
+          this.toastr.error('Something went wrong', err.message, {timeOut: 5000,});
         })
       })
     }

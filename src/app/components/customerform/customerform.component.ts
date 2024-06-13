@@ -34,7 +34,6 @@ export class CustomerformComponent implements OnInit {
       .subscribe(val =>{
         const UserIdFromToken = this.auth.getUserIdFromToken();
         this.userId = val || UserIdFromToken
-        console.log(this.userId);
       });
   }
 
@@ -45,19 +44,20 @@ export class CustomerformComponent implements OnInit {
         ...this.customerForm.value,
         createdBy: this.userId
       };
-      console.log(customerData);
+      // console.log(customerData);
       this.api.createCustomer(customerData)
       .subscribe({
         next:(res=>{
           // alert(res.message);
-          this.toastr.success('New Device Registered Successfully!', '', {
+          this.toastr.success('New Customer Registered Successfully!', res.message, {
             timeOut: 5000,
           });
           this.customerForm.reset();
-          this.router.navigate(['table']);
+          this.router.navigate(['dashboard']);
         }),
         error:(err=>{
-          alert(err?.error.message)
+          // alert(err?.error.message)
+          this.toastr.error('Something went wrong', err.message, {timeOut: 5000,});
         })
       })
     }

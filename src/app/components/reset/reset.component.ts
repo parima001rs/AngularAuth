@@ -5,6 +5,7 @@ import { ConfirmPasswordValidator } from 'src/app/helpers/confirm-password.valid
 import ValidateForm from 'src/app/helpers/validateform';
 import { ResetPassword } from 'src/app/models/reset-password.model';
 import { ResetPasswordService } from 'src/app/services/reset-password.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reset',
@@ -22,6 +23,7 @@ export class ResetComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private resetService: ResetPasswordService,
     private router: Router,
+    private toastr: ToastrService
     // private toast: NgToastService
   ) { }
 
@@ -37,8 +39,8 @@ export class ResetComponent implements OnInit {
       this.emailToReset = val['email'];
       let uriToken = val['code'];
       this.emailToken = uriToken.replace(/ /g,'+');
-      console.log(this.emailToken);
-      console.log(this.emailToReset);
+      // console.log(this.emailToken);
+      // console.log(this.emailToReset);
     })
   }
 
@@ -46,7 +48,7 @@ export class ResetComponent implements OnInit {
 
   reset(){
     if(this.resetPasswordForm.valid){
-      console.log(this.resetPasswordForm.value);
+      // console.log(this.resetPasswordForm.value);
 
       this.resetPasswordObj.email = this.emailToReset;
       this.resetPasswordObj.newPassword = this.resetPasswordForm.value.password;
@@ -56,19 +58,19 @@ export class ResetComponent implements OnInit {
       this.resetService.resetPassword(this.resetPasswordObj)
       .subscribe({
         next:(res) =>{
-          // this.toast.success({detail: 'SUCCESS',summary: "Password Reset Successfully!", duration:3000});
-          alert("Password reset successfully");
+          this.toastr.success('Password reset successfully', res.message, {timeOut: 5000,});
+          // alert("Password reset successfully");
           this.router.navigate(['/'])
         },
         error:(err)=>{
-          // this.toast.error({detail: 'ERROR',summary: "Something went wrong", duration:3000});
-          alert("something went wrong");
+          this.toastr.error('Something went wrong', err.message, {timeOut: 5000,});
+          // alert("something went wrong");
         }
       })
     }
     else{
       ValidateForm.validateAllFormFields(this.resetPasswordForm);
-      console.log("Your form is invalid");
+      // console.log("Your form is invalid");
       //logic for throwing error
     }
   }

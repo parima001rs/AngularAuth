@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { from, map, mergeMap, switchMap, toArray, Observable } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomerformComponent } from '../customerform/customerform.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -27,6 +27,7 @@ export class TableComponent implements OnInit {
   constructor(private api: ApiService, 
     private auth: AuthService, 
     private userStore: UserStoreService,
+    private toastr: ToastrService,
     private dialogRef: MatDialog) { }
 
   ngOnInit(): void {
@@ -42,7 +43,6 @@ export class TableComponent implements OnInit {
       .subscribe(val =>{
         const UserIdFromToken = this.auth.getUserIdFromToken();
         this.userId = val || UserIdFromToken
-        console.log(this.userId);
       });
 
     //to get customer and their resp. devices
@@ -75,11 +75,17 @@ export class TableComponent implements OnInit {
     };
     this.api.updateDevice(device.deviceId, updatePayload).subscribe({
       next: (response) => {
-        console.log('Update successful', response);
+        //console.log('Update successful', response);
         device.isEdit = false; // Hide the input fields after successful update
+        this.toastr.success('Update successful!', '', {
+          timeOut: 5000,
+        });
       },
       error: (error) => {
-        console.error('Update failed', error);
+        //console.error('Update failed', error);
+        this.toastr.error('Update failed', '', {
+          timeOut: 5000,
+        });
       }
     });
   }
@@ -87,10 +93,16 @@ export class TableComponent implements OnInit {
   onDelete(device: any){
     this.api.deleteDevice(device.deviceId).subscribe({
       next: (response) => {
-        console.log('Delete successful', response);
+        // console.log('Delete successful', response);
+        this.toastr.success('Delete successful!', '', {
+          timeOut: 5000,
+        });
       },
       error: (error) => {
-        console.error('Delete failed', error);
+        // console.error('Delete failed', error);
+        this.toastr.error('Delete failed', '', {
+          timeOut: 5000,
+        });
       }
     });
 }

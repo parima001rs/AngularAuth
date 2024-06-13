@@ -13,7 +13,7 @@ export class AuthService {
   private userPayload: any;
   constructor(private http : HttpClient, private router: Router) { 
     this.userPayload = this.decodedToken();
-    console.log(this.userPayload);
+    // console.log(this.userPayload);
   }
 
   signUp(userObj: any){

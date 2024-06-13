@@ -49,7 +49,10 @@ export class SignupComponent implements OnInit {
           this.router.navigate(['login']);
         }),
         error:(err=>{
-          alert(err?.error.message)
+          // alert(err?.error.message)
+          this.toastr.error('Something went wrong', err.message, {
+            timeOut: 5000,
+          });
         })
       })
     }
