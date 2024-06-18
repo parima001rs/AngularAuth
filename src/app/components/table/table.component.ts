@@ -39,11 +39,13 @@ export class TableComponent implements OnInit {
       this.role = val || roleFromToken;
     });
 
-    this.userStore.getUserIdFromStore()
-      .subscribe(val =>{
-        const UserIdFromToken = this.auth.getUserIdFromToken();
-        this.userId = val || UserIdFromToken
-      });
+    // this.userStore.getUserIdFromStore()
+    //   .subscribe(val =>{
+    //     const UserIdFromToken = this.auth.getUserIdFromToken();
+    //     this.userId = val || UserIdFromToken
+    //   });
+
+    this.getUserId();
 
     //to get customer and their resp. devices
     // this.api.getCustomers()
@@ -81,10 +83,18 @@ export class TableComponent implements OnInit {
           });
       });
     });
+  }
 
+  getUserId(){
+    this.userStore.getUserIdFromStore()
+      .subscribe(val =>{
+        const UserIdFromToken = this.auth.getUserIdFromToken();
+        this.userId = val || UserIdFromToken
+      });
   }
 
   onUpdate(device: any): void {
+    this.getUserId();
     const updatePayload = {
       startDate: device.startDate,
       endDate: device.endDate,
@@ -108,6 +118,7 @@ export class TableComponent implements OnInit {
   }
 
   onDelete(device: any){
+    this.getUserId();
     const deletePayload = {
       ModifiedBy: this.userId
     };
@@ -141,6 +152,7 @@ export class TableComponent implements OnInit {
   }
 
   onUpdateCustomer(customer: any){
+    this.getUserId();
     const updatePayload = {
       name: customer.name,
       email: customer.email,
@@ -163,6 +175,7 @@ export class TableComponent implements OnInit {
   }
 
   onDeleteCustomer(customer: any){
+    this.getUserId();
     const deletePayload = {
       ModifiedBy: this.userId
     };

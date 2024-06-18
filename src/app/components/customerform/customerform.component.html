@@ -19,14 +19,14 @@
                             <div class="form-group pt-3">
                                 <div class="input-field" [class.error]="customerForm.controls['email'].dirty && customerForm.hasError('required', 'email')">
                                     <span class ="fa fa-user p-2"></span>
-                                    <input formControlName="email" type="email" placeholder="Email">
+                                    <input formControlName="email" type="text" placeholder="Email">
                                 </div>
                             </div>
                             <small *ngIf="customerForm.controls['email'].dirty && customerForm.hasError('required', 'email')" class="text-danger">*Email is required</small>
                             <div class="form-group pt-3">
                                 <div class="input-field" [class.error]="customerForm.controls['allowedResources'].dirty && customerForm.hasError('required', 'allowedResources')">
                                     <span class ="fa fa-user p-2"></span>
-                                    <input formControlName="allowedResources" type="number" placeholder="Allowed Resources">
+                                    <input formControlName="allowedResources" type="number" placeholder="Allowed Resources" min="1">
                                 </div>
                             </div>
                             <small *ngIf="customerForm.controls['allowedResources'].dirty && customerForm.hasError('required', 'allowedResources')" class="text-danger">*Allowed Resources is required</small>
