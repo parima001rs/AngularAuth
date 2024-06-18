@@ -63,13 +63,14 @@ export class LoginComponent implements OnInit {
           this.userStore.setRoleForStore(tokenPayload.role);
         },
         error:(err)=>{
-          // alert(err?.error.message)
+          alert(err?.error.message)
           this.toastr.error('Something went wrong', err.message, {
             timeOut: 5000,
           });
           // console.log(err);
+          // console.log(err?.error?.message || err?.message);
         }
-      })
+      });
     }
     else{
       //throw the error using toaster and with req. fields
@@ -108,8 +109,6 @@ export class LoginComponent implements OnInit {
             timeOut: 5000,
           });
           // alert("Something went wrong!");
-          // console.log(err.response.data.message);
-        
         }
       })
     }

@@ -34,6 +34,7 @@ export class CustomerformComponent implements OnInit {
       .subscribe(val =>{
         const UserIdFromToken = this.auth.getUserIdFromToken();
         this.userId = val || UserIdFromToken
+        // console.log(this.userId);
       });
   }
 
@@ -44,6 +45,7 @@ export class CustomerformComponent implements OnInit {
         ...this.customerForm.value,
         createdBy: this.userId
       };
+      console.log(customerData);
       // console.log(customerData);
       this.api.createCustomer(customerData)
       .subscribe({

@@ -33,9 +33,13 @@ export class ApiService {
     return this.http.post<any>(`${this.custBaseUrl}/createCustomer`,custObj)
   }
 
-  // registerDevice(device: any){
-  //   return this.http.post<any>(`${this.devBaseUrl}/registerDevice`,device)
-  // }
+  updateCustomer(customerId: string, updatePayload: any): Observable<any> {
+    return this.http.put<any>(`${this.custBaseUrl}/updateCustomer/${customerId}`, updatePayload);
+  }
+
+  deleteCustomer(customerId: string, deletePayload: any): Observable<any> {
+    return this.http.put<any>(`${this.custBaseUrl}/deleteCustomer/${customerId}`, deletePayload);
+  }
 
   registerDevice(device: any): Observable<any> {
     return this.http.post<any>(`${this.devBaseUrl}/registerDevice`,device);
@@ -45,12 +49,13 @@ export class ApiService {
     return this.http.put<any>(`${this.devBaseUrl}/updateDevice/${deviceId}`, updatePayload);
   }
 
-  // deleteDevice(device: any): Observable<any> {
-  //   return this.http.delete<any>(`${this.devBaseUrl}/deleteDevice`, device);
-  // }
+  deleteDevice(deviceId: string, deletePayload: any): Observable<any> {
+    return this.http.put<any>(`${this.devBaseUrl}/deleteDevice/${deviceId}`, deletePayload);
 
-  deleteDevice(deviceId: any): Observable<any> {
-    return this.http.delete<any>(`${this.devBaseUrl}/deleteDevice/${deviceId}`);
+  
+
+  
+  
 }
 
 

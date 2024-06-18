@@ -24,7 +24,7 @@
                             </div>
                             <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')" class="text-danger">*Password is required</small>
                             <div class="form-inline fr mt-4">
-                                <div class="form-inline fr mt-4"> <a id="forgot" data-bs-toggle="modal" data-bs-target="#forget-password" class="font-weight-bold">Forgot password?</a> </div>
+                                <!-- <div class="form-inline fr mt-4"> <a id="forgot" data-bs-toggle="modal" data-bs-target="#forget-password" class="font-weight-bold">Forgot password?</a> </div> -->
                             </div>
                             <button (click)="onLogin()" type="submit" class="btn btn-primary btn-block mt-4 w-100">Login</button>
                             <div class="text-centre pt-4 test-muted">Don't have account? <a id="forget" routerLink="/signup" >Sign Up</a></div>
@@ -64,3 +64,4 @@
 </div>
 
 
+<!-- <app-footer></app-footer> -->

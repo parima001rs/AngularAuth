@@ -46,17 +46,19 @@ export class TableComponent implements OnInit {
       });
 
     //to get customer and their resp. devices
-    this.api.getCustomers()
-      .subscribe(customers => {
-        this.customers = customers;
-        this.customers.forEach((customer: { customerId: string; devices: any[]; }) => {
-          this.api.getDevicesById(customer.customerId)
-            .subscribe(devices => {
-              customer.devices = devices; // Add a new property to each customer for their devices
-              // console.log(devices);
-            });
-        });
-      });
+    // this.api.getCustomers()
+    //   .subscribe(customers => {
+    //     this.customers = customers;
+    //     this.customers.forEach((customer: { customerId: string; devices: any[]; }) => {
+    //       this.api.getDevicesById(customer.customerId)
+    //         .subscribe(devices => {
+    //           customer.devices = devices; // Add a new property to each customer for their devices
+    //           // console.log(devices);
+    //         });
+    //     });
+    //   });
+
+    this.getCustomer();
 
       
 
@@ -65,6 +67,21 @@ export class TableComponent implements OnInit {
 
   onEdit(deviceObj: any) {
     deviceObj.isEdit = true;
+  }
+
+  getCustomer(){
+    this.api.getCustomers()
+    .subscribe(customers => {
+      this.customers = customers;
+      this.customers.forEach((customer: { customerId: string; devices: any[]; }) => {
+        this.api.getDevicesById(customer.customerId)
+          .subscribe(devices => {
+            customer.devices = devices; // Add a new property to each customer for their devices
+            // console.log(devices);
+          });
+      });
+    });
+
   }
 
   onUpdate(device: any): void {
@@ -91,12 +108,17 @@ export class TableComponent implements OnInit {
   }
 
   onDelete(device: any){
-    this.api.deleteDevice(device.deviceId).subscribe({
+    const deletePayload = {
+      ModifiedBy: this.userId
+    };
+    this.api.deleteDevice(device.deviceId, deletePayload).subscribe({
       next: (response) => {
+        this.getCustomer();
         // console.log('Delete successful', response);
         this.toastr.success('Delete successful!', '', {
           timeOut: 5000,
         });
+
       },
       error: (error) => {
         // console.error('Delete failed', error);
@@ -110,5 +132,57 @@ export class TableComponent implements OnInit {
 
   onCancel(deviceObj: any){
     deviceObj.isEdit = false;
+  }
+
+  //for customer
+
+  onEditCustomer(customer: any){
+    customer.isEdit = true;
+  }
+
+  onUpdateCustomer(customer: any){
+    const updatePayload = {
+      name: customer.name,
+      email: customer.email,
+      allowedResources: customer.allowedResources,
+      ModifiedBy: this.userId
+    };
+    this.api.updateCustomer(customer.customerId, updatePayload).subscribe({
+      next: (response) => {
+        customer.isEdit = false; // Hide the input fields after successful update
+        this.toastr.success('Update successful!', '', {
+          timeOut: 5000,
+        });
+      },
+      error: (error) => {
+        this.toastr.error('Update failed', '', {
+          timeOut: 5000,
+        });
+      }
+    });
+  }
+
+  onDeleteCustomer(customer: any){
+    const deletePayload = {
+      ModifiedBy: this.userId
+    };
+    this.api.deleteCustomer(customer.customerId,  deletePayload).subscribe({
+      next: (response) => {
+        this.getCustomer();
+        this.toastr.success('Delete successful!', '', {
+          timeOut: 5000,
+        });
+
+      },
+      error: (error) => {
+        this.toastr.error('Delete failed', '', {
+          timeOut: 5000,
+        });
+      }
+    });
+  }
+
+  onCancelCustomer(customer: any){
+    customer.isEdit = false;
   }
 }

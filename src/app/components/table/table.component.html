@@ -28,6 +28,9 @@
                             <th>Customer Name</th>
                             <th>Email</th>
                             <th>Allowed Resources</th>
+                            <ng-container *ngIf="role === 'Admin'">
+                                <th>Action</th>	
+                            </ng-container>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,12 +43,49 @@
                                 </td>
                                 <td>{{ i + 1 }}</td>
                                 <td>{{ customer.customerId }}</td>
-                                <td>{{ customer.name }}</td>
-                                <td>{{ customer.email }}</td>
-                                <td>{{ customer.allowedResources }}</td>
+                                <!-- <td>{{ customer.name }}</td> -->
+                                <td>
+                                    <div *ngIf="customer.isEdit">
+                                        <input type="text" class="form-control" [(ngModel)]="customer.name">
+                                    </div>
+                                    <div  *ngIf="!customer.isEdit">
+                                        {{ customer.name }}
+                                    </div>
+                                </td>
+                                <!-- <td>{{ customer.email }}</td> -->
+                                <td>
+                                    <div *ngIf="customer.isEdit">
+                                        <input type="text" class="form-control" [(ngModel)]="customer.email">
+                                    </div>
+                                    <div  *ngIf="!customer.isEdit">
+                                        {{ customer.email }}
+                                    </div>
+                                </td>
+                                <!-- <td>{{ customer.allowedResources }}</td> -->
+                                <td>
+                                    <div *ngIf="customer.isEdit">
+                                        <input type="number" class="form-control" [(ngModel)]="customer.allowedResources">
+                                    </div>
+                                    <div  *ngIf="!customer.isEdit">
+                                        {{ customer.allowedResources }}
+                                    </div>
+                                </td>
+                                <td class="text-center"> 
+                                    <ng-container *ngIf="role === 'Admin'">
+                                        <div *ngIf="!customer.isEdit">
+                                            <i class="fa fa-pencil-square-o px-1" aria-hidden="true" (click)="onEditCustomer(customer)"></i>
+                                            <i class="fa fa-trash-o" aria-hidden="true" (click)="onDeleteCustomer(customer)"></i>
+                                        </div>
+                                        <div *ngIf="customer.isEdit">
+                                            <i class="fa fa-cloud px-1" (click)="onUpdateCustomer(customer)" aria-hidden="true"></i>
+                                            <i class="fa fa-times-circle" aria-hidden="true" (click)="onCancelCustomer(customer)"></i>
+                                        </div>
+                                    </ng-container>
+                                </td>
+                                
                             </tr>
                             <tr>
-                                <td colspan="6" class="hiddenRow">
+                                <td colspan="10" class="hiddenRow">
                                     <div class="collapse" [id]="'collapse' + i"> 
                                         <table class="table table-striped" *ngIf="customer.devices">
                                             <!-- <table class="table table-striped"> -->
