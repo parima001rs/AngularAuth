@@ -16,8 +16,6 @@ import { TableComponent } from './components/table/table.component';
 import { CustomerformComponent } from './components/customerform/customerform.component';
 import { DeviceformComponent } from './components/deviceform/deviceform.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-//import { NgToastModule } from 'ng-angular-popup';
-import { MatDialogModule } from '@angular/material/dialog';
 import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
@@ -41,9 +39,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule,
     CommonModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
-    MatDialogModule
-    //NgToastModule
+    ToastrModule.forRoot()
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

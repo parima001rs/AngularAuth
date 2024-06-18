@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
-import { MatDialog } from '@angular/material/dialog';
 import { CustomerformComponent } from '../customerform/customerform.component';
 import { ToastrService } from 'ngx-toastr';
 
@@ -27,8 +26,7 @@ export class TableComponent implements OnInit {
   constructor(private api: ApiService, 
     private auth: AuthService, 
     private userStore: UserStoreService,
-    private toastr: ToastrService,
-    private dialogRef: MatDialog) { }
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
