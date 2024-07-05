@@ -50,7 +50,7 @@ export class SignupComponent implements OnInit {
         }),
         error:(err=>{
           // alert(err?.error.message)
-          this.toastr.error('Something went wrong', err.error.message, {
+          this.toastr.error('', err.error.message, {
             timeOut: 5000,
           });
         })

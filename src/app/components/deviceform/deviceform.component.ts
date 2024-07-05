@@ -63,7 +63,7 @@ export class DeviceformComponent implements OnInit {
       .subscribe({
         next:(res=>{
           // alert(res.message);
-          this.toastr.success('New Device Registered Successfully!', res.message, {
+          this.toastr.success('', res.message, {
             timeOut: 5000,
           });
           this.deviceForm.reset();
@@ -71,7 +71,7 @@ export class DeviceformComponent implements OnInit {
         }),
         error:(err=>{
           // alert(err.error.message);
-          this.toastr.error('Something went wrong', err.message, {timeOut: 5000,});
+          this.toastr.error('', err.error.message, {timeOut: 5000,});
         })
       })
     }

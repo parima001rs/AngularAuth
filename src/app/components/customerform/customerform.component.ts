@@ -51,7 +51,7 @@ export class CustomerformComponent implements OnInit {
       .subscribe({
         next:(res=>{
           // alert(res.message);
-          this.toastr.success('New Customer Registered Successfully!', res.message, {
+          this.toastr.success('', res.message, {
             timeOut: 5000,
           });
           this.customerForm.reset();
@@ -59,7 +59,7 @@ export class CustomerformComponent implements OnInit {
         }),
         error:(err=>{
           // alert(err?.error.message)
-          this.toastr.error('Something went wrong', err.message, {timeOut: 5000,});
+          this.toastr.error('', err.message, {timeOut: 5000,});
         })
       })
     }

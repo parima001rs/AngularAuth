@@ -16,10 +16,10 @@ export class DashboardComponent implements OnInit {
   constructor(private api: ApiService, private auth: AuthService, private userStore: UserStoreService) { }
 
   ngOnInit(){
-    this.api.getUsers()
-    .subscribe(res=>{
-      this.users = res;
-    });
+    // this.api.getUsers()
+    // .subscribe(res=>{
+    //   this.users = res;
+    // });
 
     this.userStore.getFullNameFromStore()
     .subscribe(val =>{

@@ -62,14 +62,13 @@ export class LoginComponent implements OnInit {
           this.userStore.setFullNameForStore(tokenPayload.name);
           this.userStore.setRoleForStore(tokenPayload.role);
         },
-        error:(err)=>{
-          alert(err?.error.message)
-          this.toastr.error('Something went wrong', err.message, {
+        error: (err => {
+          console.log(err);
+          this.toastr.error(err.error.message, '', {
             timeOut: 5000,
           });
-          // console.log(err);
-          // console.log(err?.error?.message || err?.message);
-        }
+        })
+        
       });
     }
     else{
