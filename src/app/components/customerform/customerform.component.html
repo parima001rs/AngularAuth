@@ -24,6 +24,18 @@
                             </div>
                             <small *ngIf="customerForm.controls['email'].dirty && customerForm.hasError('required', 'email')" class="text-danger">*Email is required</small>
                             <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class ="fa fa-user p-2"></span>
+                                    <input formControlName="clientid" type="text" placeholder="Client Id">
+                                </div>
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class ="fa fa-user p-2"></span>
+                                    <input formControlName="clientsecret" type="text" placeholder="Client Secret">
+                                </div>
+                            </div>
+                            <div class="form-group pt-3">
                                 <div class="input-field" [class.error]="customerForm.controls['allowedResources'].dirty && customerForm.hasError('required', 'allowedResources')">
                                     <span class ="fa fa-user p-2"></span>
                                     <input formControlName="allowedResources" type="number" placeholder="Allowed Resources" min="1">
